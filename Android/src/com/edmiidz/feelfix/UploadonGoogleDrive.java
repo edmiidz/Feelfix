@@ -1,4 +1,4 @@
-package com.example.myfeeling;
+package com.edmiidz.feelfix;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -226,7 +226,7 @@ public class UploadonGoogleDrive extends Activity {
 				}
 				if (file != null) 
 				{					
-					SharedPreferences.Editor edit = getApplicationContext().getSharedPreferences("com.example.myfeeling",MODE_PRIVATE).edit();
+					SharedPreferences.Editor edit = getApplicationContext().getSharedPreferences("com.edmiidz.feelfix",MODE_PRIVATE).edit();
 					edit.putString("FileID", file.getId());
 					edit.commit();
 					fileID=file.getId();

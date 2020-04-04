@@ -1,4 +1,4 @@
-package com.example.myfeeling;
+package com.edmiidz.feelfix;
 
 
 

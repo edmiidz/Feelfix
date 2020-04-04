@@ -1,4 +1,4 @@
-package com.example.myfeeling;
+package com.edmiidz.feelfix;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,4 +1,4 @@
-package com.example.myfeeling;
+package com.edmiidz.feelfix;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class MyDownloads {
 				 for(File file:files.getItems()){
 	                    String fieldId = file.getId();
 	                    String title = file.getTitle();
-	                    SharedPreferences channel=ctx.getSharedPreferences("com.example.myfeeling", Context.MODE_PRIVATE);
+	                    SharedPreferences channel=ctx.getSharedPreferences("com.edmiidz.feelfix", Context.MODE_PRIVATE);
 	                    Log.e("MS", "MSV::  Title-->"+title+"  FieldID-->"+fieldId+" DownloadURL-->"+file.getDownloadUrl());
 	                    if (file.getDownloadUrl() != null && file.getDownloadUrl().length() > 0 && file.getId().equals(channel.getString("FileID",null).toString()))
 	                    {

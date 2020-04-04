@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.myfeeling;
+package com.edmiidz.feelfix;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

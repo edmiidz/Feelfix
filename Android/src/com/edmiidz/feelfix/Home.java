@@ -1,4 +1,4 @@
-package com.example.myfeeling;
+package com.edmiidz.feelfix;
 
 import android.app.Activity;
 import android.content.Intent;

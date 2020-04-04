@@ -1,4 +1,4 @@
-package com.example.myfeeling;
+package com.edmiidz.feelfix;
 
 import java.util.Timer;
 import java.util.TimerTask;

@@ -1,4 +1,4 @@
-package com.example.myfeeling;
+package com.edmiidz.feelfix;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
