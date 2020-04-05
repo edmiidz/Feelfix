@@ -41,13 +41,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -78,10 +78,8 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 	DBHelper h;
 	SQLiteDatabase db;
 	SeekBar seekBar;
-	EditText editTextfrom1to10, editText_why, editTextfeeling, editText_person,
-			editText_other;
-	EditText EditText_havebeenbetter, EditText_have_been_worse,
-			EditText_created, EditText_updatedlast;
+	EditText editTextfrom1to10,editText_why,editTextfeeling,editText_person,editText_other;
+	EditText EditText_havebeenbetter,EditText_have_been_worse,EditText_created,EditText_updatedlast;
 	MultiAutoCompleteTextView autoEditTextfeeling;
 	String[] languages={"Android ","java","IOS","SQL","JDBC","Web services"};
 
@@ -98,6 +96,7 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 	TimePicker timePicker;
 	ImageView img;
 	String id;
+	//Spinner tempspinner;
 
 	LinearLayout other_layout;
 
@@ -115,12 +114,11 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 		//
 		// ViewPager and its adapters use support library fragments, so we must
 		// use
-		// getSupportFragmentManager.
-		mDemoCollectionPagerAdapter = new DemoCollectionPagerAdapter(
-				getSupportFragmentManager());
+        // getSupportFragmentManager.
+        mDemoCollectionPagerAdapter = new DemoCollectionPagerAdapter(getSupportFragmentManager());
 
-		// Set up action bar.
-		final ActionBar actionBar = getActionBar();
+        // Set up action bar.
+        final ActionBar actionBar = getActionBar();
 
 		// Specify that the Home button should show an "Up" caret, indicating
 		// that touching the
@@ -206,22 +204,23 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 				public void onStopTrackingTouch(SeekBar seekBar) {
 					// TODO Auto-generated method stub
 
-					if (seekBar.getProgress() <= 50) {
-						img.setImageResource(R.drawable.sm5);
-					} else if (seekBar.getProgress() > 50
-							&& seekBar.getProgress() <= 100) {
-						img.setImageResource(R.drawable.sm4);
-					} else if (seekBar.getProgress() > 100
-							&& seekBar.getProgress() <= 110) {
-						img.setImageResource(R.drawable.sm3);
-					} else if (seekBar.getProgress() > 110
-							&& seekBar.getProgress() <= 160) {
-						img.setImageResource(R.drawable.sm2);
-					} else if (seekBar.getProgress() > 160
-							&& seekBar.getProgress() <= 210) {
-						img.setImageResource(R.drawable.sm1);
-					}
-
+					
+    				if(seekBar.getProgress()<=50){
+    					img.setImageResource(R.drawable.sm5);
+    				}
+    				else if(seekBar.getProgress()>50&& seekBar.getProgress()<=100){
+    					img.setImageResource(R.drawable.sm4);
+    				}
+    				else if(seekBar.getProgress()>100&& seekBar.getProgress()<=110){
+    					img.setImageResource(R.drawable.sm3);
+    				}
+    				else if(seekBar.getProgress()>110&& seekBar.getProgress()<=160){
+    					img.setImageResource(R.drawable.sm2);
+    				}
+    				else if(seekBar.getProgress()>160&& seekBar.getProgress()<=210){
+    					img.setImageResource(R.drawable.sm1);
+    				}
+    				
 				}
 
 				@Override
@@ -237,88 +236,88 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 					// editTextfrom1to10.setText(progress/20+1+"");
 					if (seekBar.getProgress() <= 10) {
 						// img.setImageResource(R.drawable.sm3);
-						editTextfrom1to10.setText(-10 + "");
-					} else if (seekBar.getProgress() > 10
-							&& seekBar.getProgress() <= 20) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(-9 + "");
-					} else if (seekBar.getProgress() > 20
-							&& seekBar.getProgress() <= 30) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(-8 + "");
-					} else if (seekBar.getProgress() > 30
-							&& seekBar.getProgress() <= 40) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(-7 + "");
-					} else if (seekBar.getProgress() > 40
-							&& seekBar.getProgress() <= 50) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(-6 + "");
-					} else if (seekBar.getProgress() > 50
-							&& seekBar.getProgress() <= 60) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(-5 + "");
-					} else if (seekBar.getProgress() > 60
-							&& seekBar.getProgress() <= 70) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(-4 + "");
-					} else if (seekBar.getProgress() > 70
-							&& seekBar.getProgress() <= 80) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(-3 + "");
-					} else if (seekBar.getProgress() > 80
-							&& seekBar.getProgress() <= 90) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(-2 + "");
-					} else if (seekBar.getProgress() > 90
-							&& seekBar.getProgress() <= 100) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(-1 + "");
-					} else if (seekBar.getProgress() > 100
-							&& seekBar.getProgress() <= 110) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(0 + "");
-					} else if (seekBar.getProgress() > 110
-							&& seekBar.getProgress() <= 120) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(1 + "");
-					} else if (seekBar.getProgress() > 120
-							&& seekBar.getProgress() <= 130) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(2 + "");
-					} else if (seekBar.getProgress() > 130
-							&& seekBar.getProgress() <= 140) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(3 + "");
-					} else if (seekBar.getProgress() > 140
-							&& seekBar.getProgress() <= 150) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(4 + "");
-					} else if (seekBar.getProgress() > 150
-							&& seekBar.getProgress() <= 160) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(5 + "");
-					} else if (seekBar.getProgress() > 160
-							&& seekBar.getProgress() <= 170) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(6 + "");
-					} else if (seekBar.getProgress() > 170
-							&& seekBar.getProgress() <= 180) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(7 + "");
-					} else if (seekBar.getProgress() > 180
-							&& seekBar.getProgress() <= 190) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(8 + "");
-					} else if (seekBar.getProgress() > 190
-							&& seekBar.getProgress() <= 200) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(9 + "");
-					} else if (seekBar.getProgress() > 200
-							&& seekBar.getProgress() <= 210) {
-						// img.setImageResource(R.drawable.sm4);
-						editTextfrom1to10.setText(10 + "");
-					}
+    					editTextfrom1to10.setText(-10+"");
+    				}
+    				else if(seekBar.getProgress()>10&& seekBar.getProgress()<=20){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(-9+"");
+    				}
+    				else if(seekBar.getProgress()>20&& seekBar.getProgress()<=30){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(-8+"");
+    				}
+    				else if(seekBar.getProgress()>30&& seekBar.getProgress()<=40){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(-7+"");
+    				}
+    				else if(seekBar.getProgress()>40&& seekBar.getProgress()<=50){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(-6+"");
+    				}
+    				else if(seekBar.getProgress()>50&& seekBar.getProgress()<=60){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(-5+"");
+    				}
+    				else if(seekBar.getProgress()>60&& seekBar.getProgress()<=70){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(-4+"");
+    				}
+    				else if(seekBar.getProgress()>70&& seekBar.getProgress()<=80){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(-3+"");
+    				}
+    				else if(seekBar.getProgress()>80&& seekBar.getProgress()<=90){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(-2+"");
+    				}
+    				else if(seekBar.getProgress()>90&& seekBar.getProgress()<=100){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(-1+"");
+    				}
+    				else if(seekBar.getProgress()>100&& seekBar.getProgress()<=110){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(0+"");
+    				}
+    				else if(seekBar.getProgress()>110&& seekBar.getProgress()<=120){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(1+"");
+    				}
+    				else if(seekBar.getProgress()>120&& seekBar.getProgress()<=130){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(2+"");
+    				}
+    				else if(seekBar.getProgress()>130&& seekBar.getProgress()<=140){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(3+"");
+    				}
+    				else if(seekBar.getProgress()>140&& seekBar.getProgress()<=150){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(4+"");
+    				}
+    				else if(seekBar.getProgress()>150&& seekBar.getProgress()<=160){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(5+"");
+    				}
+    				else if(seekBar.getProgress()>160&& seekBar.getProgress()<=170){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(6+"");
+    				}
+    				else if(seekBar.getProgress()>170&& seekBar.getProgress()<=180){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(7+"");
+    				}
+    				else if(seekBar.getProgress()>180&& seekBar.getProgress()<=190){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(8+"");
+    				}
+    				else if(seekBar.getProgress()>190&& seekBar.getProgress()<=200){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(9+"");
+    				}
+    				else if(seekBar.getProgress()>200&& seekBar.getProgress()<=210){
+//    					img.setImageResource(R.drawable.sm4);
+    					editTextfrom1to10.setText(10+"");
+    				}
 
 				}
 			});
@@ -332,10 +331,9 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 //                    dialog.show();
 //                }
 //            });
-
-			editTextfrom1to10 = (EditText) rootView
-					.findViewById(R.id.EditText_from1to10);
-			editTextfrom1to10.setEnabled(false);
+    		
+    		editTextfrom1to10=(EditText)rootView.findViewById(R.id.EditText_from1to10);
+    		editTextfrom1to10.setEnabled(false);
 			editTextfrom1to10.setText(0 + "");
 			// ispositive=(CheckBox)rootView.findViewById(R.id.checkBox_ispositive);
 			// ispositive.setOnCheckedChangeListener(new
@@ -361,32 +359,21 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 			//rg = (RadioGroup) rootView.findViewById(R.id.radioGroup1);
 			sex = (CheckBox) rootView.findViewById(R.id.check_sex);
 			security = (CheckBox) rootView.findViewById(R.id.check_security);
-			social = (CheckBox) rootView.findViewById(R.id.check_social);
-			textView_feelingtime = (TextView) rootView
-					.findViewById(R.id.textView_feelingtime);
-			// String mydate =
-			// java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-			Calendar c = Calendar.getInstance();
+    		social=(CheckBox)rootView.findViewById(R.id.check_social);
+    		textView_feelingtime=(TextView)rootView.findViewById(R.id.textView_feelingtime);
+//    		String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+    		Calendar c = Calendar.getInstance();
 			System.out.println("Current time => " + c.getTime());
             SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-            
+
 //			SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			String formattedDate = df.format(c.getTime());
 
 
 			textView_feelingtime.setText(formattedDate);
 
-			//autoEditTextfeeling = (MultiAutoCompleteTextView)findViewById(R.id.EditText_feeling_new);
-
-			String[] languages2={"Android2 ","java2","IOS","SQL","JDBC","Web services"};
+			String[] languages2={"fear","anger","jealousy","happy","connected","rejected"};
 			ArrayAdapter adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_expandable_list_item_1,languages2);
-
-
-			//ArrayAdapter adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,languages2);
-
-
-//			autoEditTextfeeling.setAdapter(adapter);
-//			autoEditTextfeeling.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
 
             textView_feelingtime.setOnClickListener(new OnClickListener() {
@@ -399,7 +386,10 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
             });
 
 
-    		editTextfeeling=(EditText)rootView.findViewById(R.id.EditText_feeling_new);
+			autoEditTextfeeling=(MultiAutoCompleteTextView)rootView.findViewById(R.id.EditText_feeling_new);
+			// editTextfeeling=(MultiAutoCompleteTextView)rootView.findViewById(R.id.EditText_feeling_new);
+			autoEditTextfeeling.setAdapter(adapter);
+			autoEditTextfeeling.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
     		spinner_status=(Spinner)rootView.findViewById(R.id.spinner_status);
     		spinner_status.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -422,46 +412,14 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
                 }
             });
     		editText_other=(EditText)rootView.findViewById(R.id.EditText_other);
-			// editText_main_instict=(EditText)rootView.findViewById(R.id.EditText_main_instict);
-			// havebeembetter=(EditText)rootView.findViewById(R.id.EditText_havebeenbetter);
-			// havebeenworse=(EditText)rootView.findViewById(R.id.EditText_have_been_worse);
+
 			save = (Button) rootView.findViewById(R.id.Button_save);
 			save.setText("Update");
 			save.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					// if(editText_why.getText().toString().trim().length()<=0){
-					// Toast.makeText(getApplicationContext(),"Please Enter Reason for Feeling",
-					// Toast.LENGTH_SHORT).show();
-					// }
-					// else
-					// if(editTextfeeling.getText().toString().trim().length()<=0){
-					// Toast.makeText(getApplicationContext(),"Please Enter Feeling Name",
-					// Toast.LENGTH_SHORT).show();
-					// }
-					// else
-					// if(editText_main_instict.getText().toString().trim().length()<=0){
-					// Toast.makeText(getApplicationContext(),"Please Enter Main Instinct ",
-					// Toast.LENGTH_SHORT).show();
-					// }
-					// else
-					// if(havebeembetter.getText().toString().trim().length()<=0){
-					// Toast.makeText(getApplicationContext(),"Please Enter Feeling Would have been Better to",
-					// Toast.LENGTH_SHORT).show();
-					// }
-					// else
-					// if(havebeenworse.getText().toString().trim().length()<=0){
-					// Toast.makeText(getApplicationContext(),"Please Enter Would have been Worse to",
-					// Toast.LENGTH_SHORT).show();
-					// }
-					// else
-					// if(editText_person.getText().toString().trim().length()<=0){
-					// Toast.makeText(getApplicationContext(),"Please Enter Person Name",
-					// Toast.LENGTH_SHORT).show();
-					// }
-					// else{
+
 					insertData();
 					Toast.makeText(getApplicationContext(),
 							"Feeling has been successfully updated",
@@ -471,18 +429,10 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 				}
 
 			});
-			// todo: try to pass values to datePicker
-			// datePicker.updateDate(2015, 4, 4);
 			timePicker = (TimePicker) dialog.findViewById(R.id.timePicker1);
 			datePicker = (DatePicker) dialog.findViewById(R.id.datePicker1);
-            //String feelingHour = formattedDate.substring(11,13);
-            //String feelingHour = formattedDate;
 
-
-//12/30/2015 21:26:03
 			Log.d("SilentModeApp", "UpdateC.java 451 GGGGGGGGGGGGGGGGGG");
-//            Log.d("SilentModeApp", "UpdateC.java 451 feelingHour:" + feelingHour);
-//            Log.d("SilentModeApp", "UpdateC.java 451 feelingMinute:" + feelingMinute);
             Log.d("SilentModeApp", "UpdateC.java 451 formattedDate:" + formattedDate);
 
 			Button cancel_dailog = (Button) dialog
@@ -504,21 +454,20 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 					// TODO Auto-generated method stub
 					Random r = new Random();
 					int i1 = r.nextInt(60 - 10) + 10;
-									
+
 				    String paddedMonth = String.valueOf(datePicker.getMonth() + 1);
     				paddedMonth = "00".substring(paddedMonth.length()) + paddedMonth;
     				String paddedDayOfMonth = String.valueOf(datePicker.getDayOfMonth());
     				paddedDayOfMonth = "00".substring(paddedDayOfMonth.length()) + paddedDayOfMonth;
     				String paddedMinute = String.valueOf(timePicker.getCurrentMinute());
     				paddedMinute = "00".substring(paddedMinute.length()) + paddedMinute;
-    				
-    				
+
+
 					String datatm = datePicker.getYear() + "/" + paddedMonth + "/" + paddedDayOfMonth;
 
                     Log.d("SilentModeApp", "UpdateC.java 485 DDDDDDDDDDDDDDDDDDDDD");
-					
+
 					Log.d("SilentModeApp", paddedMinute);
-					
 
 					datatm = datatm + " " + timePicker.getCurrentHour() + ":"
 							+ paddedMinute + ":" + i1;
@@ -526,7 +475,7 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 					dialog.dismiss();
 				}
 			});
-		
+
 
 			return rootView;
 		}
@@ -557,7 +506,7 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
             TextView UpdatedLastTextView = (TextView)rootView.findViewById(R.id.UpdatedLastTextView);
 			Button_more_save.setText("Update");
     		Button_more_save.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
@@ -611,12 +560,11 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 		cv.put(DBHelper.feelingTime, textView_feelingtime.getText().toString());
 		cv.put(DBHelper.feelingCauseDesc, editText_why.getText().toString());
 		cv.put(DBHelper.mainaffectedinstinct, instincts);
-		cv.put(DBHelper.Feeling, editTextfeeling.getText().toString());
+		cv.put(DBHelper.Feeling, autoEditTextfeeling.getText().toString());
 		cv.put(DBHelper.involvedpeople, editText_person.getText().toString());
-		cv.put(DBHelper.wouldabeenbetter, EditText_havebeenbetter.getText()
-				.toString());
-		cv.put(DBHelper.wouldabeenworse, EditText_have_been_worse.getText()
-				.toString());
+		cv.put(DBHelper.wouldabeenbetter, EditText_havebeenbetter.getText().toString());
+		cv.put(DBHelper.wouldabeenworse, EditText_have_been_worse.getText().toString());
+
 		cv.put(DBHelper.updatedLast, formattedDate);
 		if (spinner_status.getSelectedItem().toString().equals("Other")) {
 
@@ -719,7 +667,7 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 					// editTextfrom1to10.setText(5+"");
 					seekBar.setProgress(210);
 				}
-	
+
 
 				String instincts = cursor.getString(cursor
 						.getColumnIndex("mainaffectedinstinct"));
@@ -774,7 +722,7 @@ public class UpdateCollectionDemoActivity extends FragmentActivity {
 //                Log.d("SilentModeApp", "UpdateC.java 739 feelingMinute:" + feelingMinute);
 //                Log.d("SilentModeApp", "UpdateC.java 739 formattedDate:" + formattedDate);
 
-				editTextfeeling.setText(cursor.getString(cursor
+				autoEditTextfeeling.setText(cursor.getString(cursor
 						.getColumnIndex("Feeling")));
 			//	autoEditTextfeeling.setText("WTF?");
 				String index = cursor

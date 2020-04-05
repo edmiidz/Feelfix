@@ -85,13 +85,20 @@ public class SearchView extends Activity {
         db = h.getWritableDatabase();
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+
+
         field1 = preferences.getString("field1", "from1to10");
         field2 = preferences.getString("field2", "Feeling");
         field3 = preferences.getString("field3", "feelingTime");
         field4 = preferences.getString("field4", "mainaffectedinstinct");
-        rowcolor = preferences.getString("rowcolor",null);
+        rowcolor = preferences.getString("rowcolor","Highlight Weekends");
+
+        //if(rowcolor.isEmpty()) rowcolor = "Highlight Weekends";
+        //rowcolor = "Highlight Weekends";
+
         Log.d("SilentModeApp", "on rowcolorrrrrrrrrrrrrrrrrrr");
-        Log.d("SilentModeApp", rowcolor);
+//        Log.d("SilentModeApp", rowcolor);
         //Highlight Weekends
 
 
@@ -317,6 +324,10 @@ public class SearchView extends Activity {
     private void setDataOnTable(ArrayList<HashMap<String, String>> data2) {
         // TODO Auto-generated method stub
         if (data2.size() > 0) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+            rowcolor = preferences.getString("rowcolor","Highlight Weekends");
+
             TableRow rr = new TableRow(this);
 
             DisplayMetrics metrics = this.getResources().getDisplayMetrics();
@@ -407,9 +418,7 @@ public class SearchView extends Activity {
 
                     d = fmt.parse(hm.get("ft"));
 
-
                     c.setTime(d);
-
 
                     if(rowcolor.equals("Highlight Weekends")){
 
@@ -494,7 +503,7 @@ public class SearchView extends Activity {
         field2 = preferences.getString("field2", "Feeling");
         field3 = preferences.getString("field3", "feelingTime");
         field4 = preferences.getString("field4", "mainaffectedinstinct");
-        rowcolor = preferences.getString("rowcolor",null);
+        rowcolor = preferences.getString("rowcolor","Highlight Weekends");
 
 
         getWindow().getDecorView().findViewById(android.R.id.content).invalidate();

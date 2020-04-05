@@ -81,20 +81,17 @@
         </activity>
         <activity android:name=".DownloadFromDrive" >
         </activity> -->
-        <activity android:name=".EditRecord"  
-                    android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".RecordListView_cie"
-                    android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".DataSyn"  
+        <activity android:name=".DataSyn"
                     android:screenOrientation="portrait">
         </activity>
         <activity android:name=".More"  
                     android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Setting"  
-                    android:screenOrientation="portrait">
+        <activity android:name=".Setting"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".RowColor"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".CollectionDemoActivity"  
                     android:screenOrientation="portrait">

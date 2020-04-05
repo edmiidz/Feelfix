@@ -38,12 +38,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -77,6 +79,8 @@ public class CollectionDemoActivity extends FragmentActivity {
     Double longitude;
 	EditText editTextfrom1to10,editText_why,editTextfeeling,editText_person,editText_other;
 	EditText EditText_havebeenbetter,EditText_have_been_worse,EditText_created,EditText_updatedlast;
+	MultiAutoCompleteTextView autoEditTextfeeling;
+	String[] languages={"Android ","java","IOS","SQL","JDBC","Web services"};
 //	CheckBox ispositive;
 	RadioGroup rg;
 	CheckBox sex;
@@ -370,6 +374,8 @@ public class CollectionDemoActivity extends FragmentActivity {
             String formattedDate = df.format(c.getTime());
 			textView_feelingtime.setText(formattedDate);
 
+			String[] languages2={"fear","anger","jealousy","happy","connected","rejected"};
+			ArrayAdapter adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_expandable_list_item_1,languages2);
 
 
             textView_feelingtime.setOnClickListener(new OnClickListener() {
@@ -382,22 +388,24 @@ public class CollectionDemoActivity extends FragmentActivity {
             });
 
 
-    		editTextfeeling=(EditText)rootView.findViewById(R.id.EditText_feeling_new);
+			autoEditTextfeeling=(MultiAutoCompleteTextView)rootView.findViewById(R.id.EditText_feeling_new);
+			// editTextfeeling=(MultiAutoCompleteTextView)rootView.findViewById(R.id.EditText_feeling_new);
+			autoEditTextfeeling.setAdapter(adapter);
+			autoEditTextfeeling.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
     		spinner_status=(Spinner)rootView.findViewById(R.id.spinner_status);
     		spinner_status.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-    			@Override
-    			public void onItemSelected(AdapterView<?> arg0, View arg1,
-    					int arg2, long arg3) {
-    				// TODO Auto-generated method stub
-    				if(spinner_status.getSelectedItem().toString().equals("Other")){
-    					other_layout.setVisibility(View.VISIBLE);
-    				}
-    				else{
-    					other_layout.setVisibility(View.GONE);
-    				}
-    				
-    			}
+                @Override
+                public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                           int arg2, long arg3) {
+                    // TODO Auto-generated method stub
+                    if (spinner_status.getSelectedItem().toString().equals("Other")) {
+                        other_layout.setVisibility(View.VISIBLE);
+                    } else {
+                        other_layout.setVisibility(View.GONE);
+                    }
+
+                }
 
     			@Override
     			public void onNothingSelected(AdapterView<?> arg0) {
@@ -578,7 +586,7 @@ public class CollectionDemoActivity extends FragmentActivity {
 		cv.put(DBHelper.feelingCauseDesc, editText_why.getText().toString());
 //		cv.put(DBHelper.mainaffectedinstinct, editText_main_instict.getText().toString());
 		cv.put(DBHelper.mainaffectedinstinct, instincts);
-		cv.put(DBHelper.Feeling,editTextfeeling.getText().toString());
+		cv.put(DBHelper.Feeling,autoEditTextfeeling.getText().toString());
 		cv.put(DBHelper.involvedpeople, editText_person.getText().toString());
 		cv.put(DBHelper.wouldabeenbetter, EditText_havebeenbetter.getText().toString());
 		cv.put(DBHelper.wouldabeenworse, EditText_have_been_worse.getText().toString());
