@@ -56,8 +56,6 @@ public class UploadonGoogleDrive extends Activity {
 	private ProgressDialog pDialog;
 	public static final int progress_bar_type = 0;
 	private String fileID="";
-	//private static final String API_KEY = "AIzaSyB1_oj8OzHCv3T7It-PTxAziVUXVyzZ3AQ";
-	//AIzaSyA_fFoVh5qSSxNf03vEbJGfND_QKWmA0rQ;
 	/*private String q="title contains 'spotcheck-skj43gsj' and mimeType = 'application/vnd.google-apps.spreadsheet' and trashed = false";*/
 	public String q="title='spotcheck-skj43gsj' and mimeType = 'application/vnd.google-apps.spreadsheet' and trashed = false";
 
