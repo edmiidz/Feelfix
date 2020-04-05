@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Row Color Scheme"
+        android:id="@+id/rowColorTextView" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="144dp"
+            android:layout_height="52dp"
+            android:text="Select Row Color Scheme"
+            android:id="@+id/textView" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rowColorListSpinner"
+            android:choiceMode="singleChoice"
+            android:entries="@array/statsunames"
+            android:fastScrollAlwaysVisible="false"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_save_rowcolor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@xml/btn_bg"
+        android:padding="10dp"
+        android:text="Save Settings"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+</LinearLayout>
