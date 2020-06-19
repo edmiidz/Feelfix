@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="yellow">#fffcef9a</color>
+    <color name="marun">#ff523108</color>
+    <color name="darkMarun">#ff361f02</color>
+    <color name="softRed">#ffe4dbd6</color>
+    <color name="startColor">#ffdcd3ca</color>
+    <color name="centerColor">#ffcdc0b3</color>
+    <color name="endColor">#ff89715a</color>
+    <color name="White">#ffffffff</color>
+</resources>
