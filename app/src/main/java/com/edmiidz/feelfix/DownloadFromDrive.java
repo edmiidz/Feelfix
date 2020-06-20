@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -21,6 +22,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
@@ -32,6 +34,12 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import au.com.bytecode.opencsv.CSVWriter;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -46,9 +54,10 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 
-public class DownloadFromDrive extends Activity {
+public class DownloadFromDrive extends AppCompatActivity {
 	static final int REQUEST_ACCOUNT_PICKER = 1;
 	static final int REQUEST_AUTHORIZATION = 2;
+	static final int REQUEST_ACCOUNTS = 1002;
 	private static Drive service;
 	private GoogleAccountCredential credential;
 	private ProgressDialog pDialog;
@@ -65,6 +74,7 @@ public class DownloadFromDrive extends Activity {
 
     public String q="title='spotcheck-skj43gsj' and mimeType = 'application/vnd.google-apps.spreadsheet' and trashed = false";
 	private ProgressDialog progressDialog;
+	private AlertDialog.Builder alertDialog;
 
 	//@SuppressWarnings("deprecation")
 	@Override
@@ -83,13 +93,10 @@ public class DownloadFromDrive extends Activity {
 
 		}
 
-		if (Build.VERSION.SDK_INT >= 9) {
-
-			StrictMode.ThreadPolicy policy1 = new StrictMode.ThreadPolicy.Builder()
-				.permitAll().build();
-			StrictMode.setThreadPolicy(policy1);
-		}
-		AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+		StrictMode.ThreadPolicy policy1 = new StrictMode.ThreadPolicy.Builder()
+			.permitAll().build();
+		StrictMode.setThreadPolicy(policy1);
+		alertDialog = new AlertDialog.Builder(
 			DownloadFromDrive.this);
 		alertDialog.setMessage("Do you want to overwrite your local data or merge with it?");
 		alertDialog.setPositiveButton(
@@ -135,11 +142,33 @@ public class DownloadFromDrive extends Activity {
                     }
                 });
 
+		if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.GET_ACCOUNTS)
+				!= PackageManager.PERMISSION_GRANTED) {
+			ActivityCompat.requestPermissions(DownloadFromDrive.this,
+					new String[]{Manifest.permission.GET_ACCOUNTS}, REQUEST_ACCOUNTS);
 
-		alertDialog.setCancelable(true);
-		alertDialog.show();
+		} else {
+			alertDialog.setCancelable(true);
+			alertDialog.show();
+		}
 
 	}
+
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		if (requestCode == REQUEST_ACCOUNTS) {
+			if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				alertDialog.setCancelable(true);
+				alertDialog.show();
+			} else {
+				Toast.makeText(getApplicationContext(), "You have to grant permission to restore from google drive", Toast.LENGTH_LONG).show();
+				finish();
+			}
+
+		}
+	}
+
 
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -170,32 +199,33 @@ public class DownloadFromDrive extends Activity {
 	@Override
 	protected void onActivityResult(
 			final int requestCode, final int resultCode, final Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
-		case REQUEST_ACCOUNT_PICKER:
-			if (resultCode == RESULT_OK && data != null
-					&& data.getExtras() != null) {
-				String accountName = data
-					.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-				if (accountName != null) {
-					credential.setSelectedAccountName(accountName);
-					service = getDriveService(credential);
-					if (service != null) {
-						new DownloadFile().execute(credential
-							.getSelectedAccount());
-					}
+			case REQUEST_ACCOUNT_PICKER:
+				if (resultCode == RESULT_OK && data != null
+						&& data.getExtras() != null) {
+					String accountName = data
+							.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+					if (accountName != null) {
+						credential.setSelectedAccountName(accountName);
+						service = getDriveService(credential);
+						if (service != null) {
+							new DownloadFile().execute(credential
+									.getSelectedAccount());
+						}
 
+					}
 				}
-			}
-			break;
-		case REQUEST_AUTHORIZATION:
-			if (resultCode == Activity.RESULT_OK) {
-				Toast.makeText(
-					getApplicationContext(), "Hello", Toast.LENGTH_LONG).show();
-			} else {
-				startActivityForResult(
-					credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
-			}
-			break;
+				break;
+			case REQUEST_AUTHORIZATION:
+				if (resultCode == Activity.RESULT_OK) {
+					Toast.makeText(
+							getApplicationContext(), "Hello", Toast.LENGTH_LONG).show();
+				} else {
+					startActivityForResult(
+							credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+				}
+				break;
 		}
 	}
 
@@ -336,6 +366,7 @@ public class DownloadFromDrive extends Activity {
 			dismissDialog(progress_bar_type);
 			pDialog.setTitle("Database Has Been Restore..");
 			pDialog.dismiss();
+			Toast.makeText(getApplicationContext(), "Backup Restored...", Toast.LENGTH_LONG).show();
 			finish();
 		}
 
