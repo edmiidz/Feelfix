@@ -55,7 +55,7 @@ public class BackUpOnGoogleDrive extends Activity {
 	private ProgressDialog pDialog;
 	public static final int progress_bar_type = 0;
 	private String fileID="";
-	private static final String API_KEY = "{REPLACE WITH YOUR API_KEY}";
+	private static final String API_KEY = "";
 
 	public String q="title='spotcheck-backup' and mimeType = 'application/vnd.google-apps.spreadsheet' and trashed = false";
 	private ProgressDialog progressDialog;
