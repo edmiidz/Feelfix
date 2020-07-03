@@ -31,10 +31,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import im.delight.android.location.SimpleLocation;
+
 
 public class Start extends Activity {
 	SeekBar seekBar;
-    SimpleLocation location;
+	private SimpleLocation location;
     String coordinates[];
     Double lattitude;
     Double longtitude;

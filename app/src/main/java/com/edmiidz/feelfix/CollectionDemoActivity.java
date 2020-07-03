@@ -45,6 +45,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
+import im.delight.android.location.SimpleLocation;
+
 
 public class CollectionDemoActivity extends AppCompatActivity {
     private Button save;
@@ -99,7 +101,11 @@ public class CollectionDemoActivity extends AppCompatActivity {
         longitude = simpleLocation.getLongitude();
 
         System.out.println("I am Here CollectionDemoActivity.java");
+        System.out.println(latitude+','+longitude );
+        System.out.println("latitude+','+longitude");
+
         System.out.println(latitude.toString());
+        System.out.println(longitude.toString());
 
         img = findViewById(R.id.ImageView_smily);
         img.setImageResource(R.drawable.sm3);
