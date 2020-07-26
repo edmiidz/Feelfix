@@ -325,22 +325,10 @@ public class DownloadFromDrive extends AppCompatActivity {
 		}
 
 
+
+
 		public String iSO801ifydate(String mydate){
-
-			SimpleDateFormat fmt = new SimpleDateFormat("M/d/yyyy H:mm:ss");
-            Date d;
-            try {
-                d = fmt.parse(mydate);
-            } catch (java.text.ParseException e) {
-
-                e.printStackTrace();
-                return null;
-            }
-            SimpleDateFormat prnt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            String newDate=prnt.format(d);
-
-
-			return newDate;
+			return mydate.replace("/","-");
 		}
 
 		/**
