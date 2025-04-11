@@ -1,6 +1,5 @@
 import SwiftUI
 
-@main
 struct FeelFixApp: App {
     // Set up persistence controller
     let persistenceController = PersistenceController.shared

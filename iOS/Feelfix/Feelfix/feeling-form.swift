@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreLocation
+import CoreData
 
 struct FeelingFormView: View {
     @Environment(\.dismiss) private var dismiss
@@ -82,9 +83,8 @@ struct FeelingFormView: View {
                         
                         Spacer()
                         
-                        Image(getFeelingImage())
-                            .resizable()
-                            .frame(width: 40, height: 40)
+                        Text(getFeelingEmoji())
+                            .font(.system(size: 40))
                     }
                 }
                 
@@ -176,6 +176,9 @@ struct FeelingFormView: View {
                 }
             }
             .onAppear {
+                print("Model URL:", Bundle.main.url(forResource: "FeelFix", withExtension: "momd"))
+                print("Entities:", PersistenceController.shared.container.managedObjectModel.entities.map { $0.name })
+
                 // Request location when the form appears
                 locationManager.requestLocation()
             }

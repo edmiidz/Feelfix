@@ -62,7 +62,7 @@ extension Feeling {
     
     // Create or update a managed object from this Feeling
     func toManagedObject(context: NSManagedObjectContext) -> FeelingEntity {
-        let fetchRequest: NSFetchRequest<FeelingEntity> = FeelingEntity.fetchRequest()
+        let fetchRequest: NSFetchRequest<FeelingEntity> = FeelingEntity.fetchRequest() as! NSFetchRequest<FeelingEntity>
         fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
         let existingFeelings = try? context.fetch(fetchRequest)

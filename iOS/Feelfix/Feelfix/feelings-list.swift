@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreData
 
 struct FeelingsListView: View {
     @Environment(\.colorScheme) private var colorScheme
@@ -62,6 +63,9 @@ struct FeelingsListView: View {
                 }
             }
             .onAppear {
+                print("Model URL2:", Bundle.main.url(forResource: "FeelFix", withExtension: "momd"))
+                print("Entities2:", PersistenceController.shared.container.managedObjectModel.entities.map { $0.name })
+
                 loadFeelings()
             }
             .sheet(isPresented: $showingAddForm) {

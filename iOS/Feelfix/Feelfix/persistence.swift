@@ -1,5 +1,6 @@
 import CoreData
 import SwiftUI
+import CoreData
 
 // Manages Core Data operations
 class PersistenceController {
@@ -12,7 +13,7 @@ class PersistenceController {
         
         // Create 10 example feelings
         let viewContext = controller.container.viewContext
-        for i in 0.&lt;10 {
+        for i in 0..<10 {
             let feeling = FeelingEntity(context: viewContext)
             feeling.id = UUID()
             feeling.feeling = "Sample Feeling \(i+1)"
@@ -27,7 +28,7 @@ class PersistenceController {
             feeling.created = Date()
             feeling.updatedLast = Date()
             feeling.latitude = Double.random(in: 35...45)
-            feeling.longitude = Double.random(in: -125...-115)
+            feeling.longitude = Double.random(in: -125...(-115))
         }
         
         do {
@@ -85,7 +86,7 @@ class PersistenceController {
     
     // Get all feelings
     func getAllFeelings() -> [Feeling] {
-        let fetchRequest: NSFetchRequest<FeelingEntity> = FeelingEntity.fetchRequest()
+        let fetchRequest: NSFetchRequest<FeelingEntity> = FeelingEntity.fetchRequest() as! NSFetchRequest<FeelingEntity>
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \FeelingEntity.feelingTime, ascending: false)]
         
         do {
@@ -99,7 +100,7 @@ class PersistenceController {
     
     // Search feelings by query string
     func searchFeelings(query: String) -> [Feeling] {
-        let fetchRequest: NSFetchRequest<FeelingEntity> = FeelingEntity.fetchRequest()
+        let fetchRequest: NSFetchRequest<FeelingEntity> = FeelingEntity.fetchRequest() as! NSFetchRequest<FeelingEntity>
         
         // Only apply filter if the query has at least 2 characters
         if query.count > 2 {
@@ -128,7 +129,7 @@ class PersistenceController {
     
     // Delete a feeling
     func deleteFeeling(_ feeling: Feeling) {
-        let fetchRequest: NSFetchRequest<FeelingEntity> = FeelingEntity.fetchRequest()
+        let fetchRequest: NSFetchRequest<FeelingEntity> = FeelingEntity.fetchRequest() as! NSFetchRequest<FeelingEntity>
         fetchRequest.predicate = NSPredicate(format: "id == %@", feeling.id as CVarArg)
         
         do {

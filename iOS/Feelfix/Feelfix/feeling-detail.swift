@@ -1,5 +1,6 @@
 import SwiftUI
 import MapKit
+import CoreData
 
 struct FeelingDetailView: View {
     let feeling: Feeling
@@ -96,9 +97,14 @@ struct FeelingDetailView: View {
                 .font(.headline)
                 .frame(width: 120, alignment: .leading)
             
-            if let formatter = formatter, let formattable = value as? NSObjectProtocol, formattable.responds(to: #selector(NSObject.description(with:))) {
-                Text(formatter.string(for: value) ?? "")
-                    .font(.body)
+            if let formatter = formatter {
+                if let date = value as? Date {
+                    Text(formatter.string(for: date) ?? "")
+                        .font(.body)
+                } else {
+                    Text(formatter.string(for: value) ?? "")
+                        .font(.body)
+                }
             } else {
                 Text("\(value)")
                     .font(.body)
