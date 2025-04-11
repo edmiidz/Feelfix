@@ -85,9 +85,8 @@ struct FeelingDetailView: View {
             
             Spacer()
             
-            Image(getFeelingImage())
-                .resizable()
-                .frame(width: 60, height: 60)
+            Text(getFeelingEmoji())
+                .font(.system(size: 40))
         }
     }
     
@@ -173,17 +172,18 @@ struct FeelingDetailView: View {
         return feeling.latitude != 0 && feeling.longitude != 0
     }
     
-    private func getFeelingImage() -> String {
+    // was getFeelingImage()
+    private func getFeelingEmoji() -> String {
         if feeling.ratingValue <= -6 {
-            return "sm5"
+            return "😢" // Very sad
         } else if feeling.ratingValue <= -1 {
-            return "sm4"
+            return "🙁" // Sad
         } else if feeling.ratingValue == 0 {
-            return "sm3"
+            return "😐" // Neutral
         } else if feeling.ratingValue <= 5 {
-            return "sm2"
+            return "🙂" // Happy
         } else {
-            return "sm1"
+            return "😄" // Very happy
         }
     }
     

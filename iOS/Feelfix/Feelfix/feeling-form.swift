@@ -184,17 +184,18 @@ struct FeelingFormView: View {
     
     // Helpers
     
-    private func getFeelingImage() -> String {
+    // was getFeelingImage()
+    private func getFeelingEmoji() -> String {
         if feeling.ratingValue <= -6 {
-            return "sm5"
+            return "😢" // Very sad
         } else if feeling.ratingValue <= -1 {
-            return "sm4"
+            return "🙁" // Sad
         } else if feeling.ratingValue == 0 {
-            return "sm3"
+            return "😐" // Neutral
         } else if feeling.ratingValue <= 5 {
-            return "sm2"
+            return "🙂" // Happy
         } else {
-            return "sm1"
+            return "😄" // Very happy
         }
     }
     

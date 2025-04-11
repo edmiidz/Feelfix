@@ -8,14 +8,14 @@ struct FeelFixApp: App {
     // App body
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
 
 // Main content view
-struct ContentView: View {
+struct MainContentView: View {
     @State private var selectedTab: Tab = .feelings
     
     enum Tab {
