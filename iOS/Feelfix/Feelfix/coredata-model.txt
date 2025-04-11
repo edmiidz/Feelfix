@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22E261" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FeelingEntity" representedClassName="FeelingEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="feeling" attributeType="String"/>
+        <attribute name="feelingCauseDesc" attributeType="String"/>
+        <attribute name="feelingTime" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="involvedPeople" attributeType="String"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="mainAffectedInstinct" attributeType="String"/>
+        <attribute name="ratingValue" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="updatedLast" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="wouldHaveBeenBetter" attributeType="String"/>
+        <attribute name="wouldHaveBeenWorse" attributeType="String"/>
+    </entity>
+</model>

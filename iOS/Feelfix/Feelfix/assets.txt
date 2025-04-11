@@ -1,0 +1,51 @@
+# Assets and Resources
+
+You will need to add the following assets to your project:
+
+## Emoji Images
+Create an Assets.xcassets folder and add the following images:
+
+1. sm1.png - A happy smiley face (for high positive ratings)
+2. sm2.png - A slightly happy smiley face (for positive ratings)
+3. sm3.png - A neutral smiley face (for neutral ratings)
+4. sm4.png - A slightly sad smiley face (for negative ratings)
+5. sm5.png - A sad smiley face (for very negative ratings)
+
+## Info.plist Additions
+
+Add the following to your Info.plist file to enable location services:
+
+```xml
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>FeelFix needs your location to associate feelings with places.</string>
+```
+
+## CoreData Model
+
+Create a CoreData model file named FeelFix.xcdatamodeld with the schema provided in the CoreData Model Schema file.
+
+## Project Setup
+
+1. Create a new iOS project using SwiftUI 
+2. Target iOS 15.0 or later
+3. Add CoreData and CoreLocation frameworks to your project
+4. Add the provided files to your project structure
+5. Create the Assets.xcassets folder and add the emoji images
+
+## Project Structure
+
+- FeelFixApp.swift (Main app entry point)
+- ContentView.swift (Main tab view)
+- Models/
+  - Feeling.swift (Data model)
+- Views/
+  - FeelingsListView.swift (List of feelings)
+  - FeelingFormView.swift (Form for adding/editing feelings)
+  - FeelingDetailView.swift (Detail view for a feeling)
+  - SettingsView.swift (Settings view)
+  - BackupView.swift (Backup/restore view)
+- CoreData/
+  - PersistenceController.swift (CoreData manager)
+  - FeelFix.xcdatamodeld (CoreData model)
+- Utils/
+  - LocationManager.swift (Location services)
